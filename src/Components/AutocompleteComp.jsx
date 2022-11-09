@@ -7,8 +7,10 @@ import debounce from "lodash.debounce"
 const AutocompleteComp = (props) => {
     const navigate = useNavigate()
     const completeUser = (value) => {
-        props.setPerson(value)
-        navigate('/page')
+        if(value) {
+            props.setPerson(value)
+            navigate('/page')
+        }
     }
     const takePerson = (value) => props.setData(value)
 

@@ -1,6 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {Grid, Skeleton} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 import ReposCard from "../Components/ReposCard";
 
 const Repos = (props) => {

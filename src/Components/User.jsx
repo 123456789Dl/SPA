@@ -1,19 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import style from '../Style/User.module.css'
 import UserCard from "./UserCard";
-import {useNavigate} from "react-router-dom";
 
 const User = (props) => {
     const [userConf, setUserConf] = useState([])
 
     useEffect(() => {
         if (props.person) {
-            fetch(`https://api.github.com/users/${props.person}`, {
-                method: 'GET',
-                headers: new Headers({
-                    'Authorization': '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'
-                })
-            })
+            fetch(`https://api.github.com/users/${props.person}`)
                 .then((response) => response.json())
                 .then((response) => setUserConf(response))
         }

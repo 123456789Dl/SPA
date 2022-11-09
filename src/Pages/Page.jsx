@@ -12,12 +12,7 @@ const Page = (props) => {
     const navigate = useNavigate()
     let temp = null
     const getUserData = async () => {
-        await fetch(`https://api.github.com/users/${person}/repos`, {
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': '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'
-            })
-        })
+        await fetch(`https://api.github.com/users/${person}/repos`)
             .then((response) => response.json())
             .then((response) => setFetchRep(response))
         setIsLoading(true)
