@@ -1,14 +1,12 @@
 import * as React from 'react';
-import {styled} from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import StarRateIcon from '@mui/icons-material/StarRate';
 
 export default function ReposCard(props) {
-    const {size = 4, watchers, name, id, stars} = props
+    const {size = 4, watchers, name, id, stars, description} = props
     return (
         <Grid xs={size} mb='20px'>
             <Paper
@@ -22,28 +20,34 @@ export default function ReposCard(props) {
                 }}
             >
                 <Grid item>
-                    <Grid>
-                        <Typography gutterBottom variant="subtitle1" component="div">
-                            {name}
-                        </Typography>
-                        <Typography variant="body2" gutterBottom>
-                            <div style={{display:'flex'}}>
-                                <div style={{marginRight:'5px'}}><VisibilityIcon/></div><div style={{paddingTop:'3px'}}>{watchers}</div>
-                            </div>
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            <div style={{display:'flex'}}>
-                                <div style={{marginRight:'5px'}}><ThumbUpIcon sx={{color:'black'}}/></div><div style={{paddingTop:'3px'}}>Подписки</div>
-                            </div>
-                        </Typography>
-                    </Grid>
-                    <Grid>
-                        <Typography>
-                            <div style={{display:'flex'}}>
-                                <div style={{marginRight:'5px'}}><StarRateIcon/></div><div style={{paddingTop:'3px'}}>{stars}</div>
-                            </div>
-                        </Typography>
-                    </Grid>
+                    <Typography gutterBottom variant="subtitle1" component="div">
+                        {name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        <Grid sx={{m: '3px 3px 3px 0'}}>
+                            {(description) ? description : 'No data'}
+                        </Grid>
+                    </Typography>
+                    <Typography variant="body2" gutterBottom>
+                        <Grid container>
+                            <Grid>
+                                <VisibilityIcon/>
+                            </Grid>
+                            <Grid sx={{m: '3px'}}>
+                                {watchers}
+                            </Grid>
+                        </Grid>
+                    </Typography>
+                    <Typography variant="body2">
+                        <Grid container>
+                            <Grid>
+                                <StarRateIcon/>
+                            </Grid>
+                            <Grid sx={{m: '3px'}}>
+                                {stars}
+                            </Grid>
+                        </Grid>
+                    </Typography>
                 </Grid>
             </Paper>
         </Grid>

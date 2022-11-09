@@ -3,9 +3,7 @@ import {styled} from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
-import style from './UserCard.module.css'
-import {useNavigate} from "react-router-dom";
+
 
 const Img = styled('img')({
     margin: 'auto',
@@ -15,6 +13,7 @@ const Img = styled('img')({
 });
 
 export default function UserCard(props) {
+    const dayjs = require('dayjs')
     return (
         <Paper
             sx={{
@@ -29,33 +28,38 @@ export default function UserCard(props) {
         >
             <Grid container spacing={2}>
                 <Grid item>
-                    <ButtonBase sx={{width: 128, height: 128}} onClick={props.goToRepos}>
+                    <Typography sx={{width: 140, height: 140, margin:'15px'}}>
                         <Img alt="complex" src={props.img}/>
-                    </ButtonBase>
+                    </Typography>
                 </Grid>
-                <Grid item xs={12} sm container>
+                <Grid item xs={12} sm container sx={{margin:'auto'}}>
                     <Grid item xs container direction="column" spacing={2}>
-                        <Grid item xs>
-                            <Typography gutterBottom variant="subtitle1" component="div">
-                                {props.login}
-                            </Typography>
-                            <Typography variant="body2" gutterBottom>
-                                Blog: {props.blog}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                ID: {props.id}
-                            </Typography>
-                            <Typography variant="body2">
-                                Followers: {props.followers}
-                            </Typography>
-                            <Typography variant="body2">
-                                Following: {props.following}
-                            </Typography>
+                        <Grid item>
+                            <Grid sx={{mb:'10px'}}>
+                                <Typography gutterBottom variant="subtitle1" component="div">
+                                    {props.login}
+                                </Typography>
+                            </Grid>
+                            <Grid sx={{mb:'10px'}}>
+                                <Typography variant="body2" gutterBottom>
+                                    Blog: {props.blog}
+                                </Typography>
+                            </Grid>
+                            <Grid sx={{mb:'10px'}}>
+                                <Typography variant="body2">
+                                    Followers: {props.followers}
+                                </Typography>
+                            </Grid>
+                            <Grid sx={{mb:'10px'}}>
+                                <Typography variant="body2">
+                                    Following: {props.following}
+                                </Typography>
+                            </Grid>
                         </Grid>
                     </Grid>
                     <Grid item>
                         <Typography variant="subtitle1" component="div">
-                            {props.created}
+                            {props.created && dayjs(props.created).format('YYYY-MM-DD')}
                         </Typography>
                     </Grid>
                 </Grid>

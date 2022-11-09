@@ -1,20 +1,23 @@
-import React, {useEffect, useRef, useState} from 'react';
-import style from './User.module.css'
-import {Button} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import style from '../Style/User.module.css'
 import UserCard from "./UserCard";
+import {useNavigate} from "react-router-dom";
 
 const User = (props) => {
     const [userConf, setUserConf] = useState([])
 
     useEffect(() => {
         if (props.person) {
-            fetch(`https://api.github.com/users/${props.person}`)
+            fetch(`https://api.github.com/users/${props.person}`, {
+                method: 'GET',
+                headers: new Headers({
+                    'Authorization': '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'
+                })
+            })
                 .then((response) => response.json())
                 .then((response) => setUserConf(response))
         }
     }, [props.person])
-    // console.log(`userconf:${userConf.owner}`)
     return (
         <div>
             <div className={style.wrapper}>
@@ -26,7 +29,6 @@ const User = (props) => {
                     created={userConf.created_at}
                     followers={userConf.followers}
                     following={userConf.following}
-                    goToProfile={props.goToProfile}
                     goToRepos={props.goToRepos}
                 />
             </div>
