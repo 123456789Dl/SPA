@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {Grid, Skeleton} from "@mui/material";
+
 import ReposCard from "../Components/ReposCard";
 
 const Repos = (props) => {
@@ -37,11 +38,11 @@ const Repos = (props) => {
             <Grid container>
                 {(isLoading && reposData.length) ?
                     collectionRepos
-                    : <Skeleton
+                    : (reposData && (reposData.length = 0)) ? (<Skeleton
                         variant="rounded"
                         width='80%'
                         height={300}
-                        sx={{margin:'auto'}}/>}
+                        sx={{margin:'auto'}}/>) :(<p style={{margin:'auto'}}>Репозитории не найдены</p>)}
             </Grid>
         </div>
 
