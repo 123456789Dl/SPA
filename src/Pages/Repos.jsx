@@ -30,7 +30,7 @@ const Repos = (props) => {
             return (reposData.filter((el) => repository === el.name))
         }
     }
-    let filterHolder = filterRepos()
+    const filterHolder = filterRepos();
 
     const mapRepositories = () => {
         if (reposData && reposData.length > 0 && filterHolder.length > 0) {
