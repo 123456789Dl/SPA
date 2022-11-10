@@ -1,0 +1,24 @@
+.dividing_line {
+    margin-top: 30px;
+    width: 50%
+}
+
+.skel_item {
+    margin: 20px auto
+}
+
+.button_wrapper {
+    display: flex;
+    justify-content: center;
+    margin-left: 700px
+}
+
+.few_reposCards_wrapper {
+    justify-content: center;
+    display: flex
+}
+
+.reposCards_container {
+    margin: 50px;
+    width: 50%;
+}

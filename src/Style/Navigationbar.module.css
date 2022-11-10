@@ -1,0 +1,4 @@
+.toolbar_autocomp {
+    display: grid;
+    grid-template-columns: 2fr 0.2fr 0.2fr
+}

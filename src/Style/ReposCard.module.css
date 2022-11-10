@@ -1,0 +1,10 @@
+.paper_wrap {
+    margin: auto;
+    max-width: 500px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.reposCard_item{
+    margin: 3px 3px 3px 0;
+}

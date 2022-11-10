@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {Grid, Skeleton} from "@mui/material";
+import style from '../Style/Repos.module.css'
 
 import ReposCard from "../Components/ReposCard";
 
@@ -33,8 +34,8 @@ const Repos = (props) => {
     const collectionRepos = useMemo(() => mapRepositories())
     return (
         <div>
-            <p style={{'text-align': 'center'}}>Количество репозиториев: {reposData && reposData.length}</p>
-            <hr style={{width: '30%'}}/>
+            <p className={style.header_p}>Количество репозиториев: {reposData && reposData.length}</p>
+            <hr className={style.header_divide_line}/>
             <Grid container>
                 {(isLoading && reposData.length) ?
                     collectionRepos
@@ -42,7 +43,7 @@ const Repos = (props) => {
                         variant="rounded"
                         width='80%'
                         height={300}
-                        sx={{margin:'auto'}}/>) :(<p style={{margin:'auto'}}>Репозитории не найдены</p>)}
+                        sx={{margin:'auto'}}/>) :(<p className={style.bottom_p}>Репозитории не найдены</p>)}
             </Grid>
         </div>
 

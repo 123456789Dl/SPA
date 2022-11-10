@@ -3,6 +3,7 @@ import User from "../Components/User";
 import ReposCard from "../Components/ReposCard";
 import {Button, Grid, Skeleton} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import style from '../Style/Page.module.css'
 
 
 const Page = (props) => {
@@ -31,21 +32,22 @@ const Page = (props) => {
                     {props.person && <User {...{person, goToRepos}}/>}
                 </div>
             ) : (
-                <Skeleton variant="rounded" width='50%' height={100} sx={{margin: '20px auto'}}/>
+                <Skeleton variant="rounded" width='50%' height={100} className={style.skel_item}/>
             )}
             {(props.person) ? (
                 <div>
-                    <hr style={{'margin-top': '30px', width: '50%'}}/>
-                    <div style={{display: 'flex', justifyContent: 'center', marginLeft: '700px'}}>
+                    <hr className={style.dividing_line}/>
+                    <div className={style.button_wrapper}>
                         <Button variant="outlined" onClick={() => navigate('/repository')}>Показать все репозитории</Button>
                     </div>
                 </div>
             ) : (<div></div>)}
 
             {(isLoading) ? (
-                <div style={{justifyContent: 'center', display: 'flex'}}>
-                    <Grid container style={{width: '50%', marginTop: '50px'}}>
+                <div className={style.few_reposCards_wrapper}>
+                    <Grid container className={style.reposCards_container}>
                         {props.person && temp.map((val) => <ReposCard
+                            key={val.id}
                             size={6}
                             watchers={val.watchers}
                             name={val.name}
@@ -57,10 +59,10 @@ const Page = (props) => {
             ) : (
                 <Grid>
                     <Grid>
-                        <Skeleton variant="rounded" width='50%' height={100} sx={{margin: '20px auto'}}/>
+                        <Skeleton variant="rounded" width='50%' height={100} className={style.skel_item}/>
                     </Grid>
                     <Grid>
-                        <Skeleton variant="rounded" width='50%' height={100} sx={{margin: '20px auto'}}/>
+                        <Skeleton variant="rounded" width='50%' height={100} className={style.skel_item}/>
                     </Grid>
                 </Grid>
             )}

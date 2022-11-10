@@ -7,7 +7,6 @@ import Navigationbar from "./Components/Navigationbar";
 import HomePage from "./Pages/HomePage";
 
 const App = () => {
-
     const [person, setPerson] = useState(null)
 
     return (

@@ -4,17 +4,15 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import StarRateIcon from '@mui/icons-material/StarRate';
+import style from '../Style/ReposCard.module.css'
 
 export default function ReposCard(props) {
-    const {size = 4, watchers, name, id, stars, description} = props
+    const {size = 4, watchers, name, stars, description} = props
     return (
         <Grid xs={size} mb='20px'>
-            <Paper
+            <Paper className={style.paper_wrap}
                 sx={{
                     p: 2,
-                    margin: 'auto',
-                    maxWidth: 500,
-                    flexGrow: 1,
                     backgroundColor: (theme) =>
                         theme.palette.mode === 'dark' ? '#1A2027' : '#FFFFE0',
                 }}
@@ -24,7 +22,7 @@ export default function ReposCard(props) {
                         {name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        <Grid sx={{m: '3px 3px 3px 0'}}>
+                        <Grid className={style.reposCard_item}>
                             {(description) ? description : 'No data'}
                         </Grid>
                     </Typography>
@@ -33,7 +31,7 @@ export default function ReposCard(props) {
                             <Grid>
                                 <VisibilityIcon/>
                             </Grid>
-                            <Grid sx={{m: '3px'}}>
+                            <Grid className={style.reposCard_item}>
                                 {watchers}
                             </Grid>
                         </Grid>
@@ -43,7 +41,7 @@ export default function ReposCard(props) {
                             <Grid>
                                 <StarRateIcon/>
                             </Grid>
-                            <Grid sx={{m: '3px'}}>
+                            <Grid className={style.reposCard_item}>
                                 {stars}
                             </Grid>
                         </Grid>

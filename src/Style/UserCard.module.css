@@ -1,0 +1,20 @@
+.paper_wrap {
+    margin: 20px auto auto auto;
+    align-items: center;
+    max-width: 1000px;
+    flex-grow: 1
+}
+
+.img_wrap {
+    width: 140px;
+    height: 140px;
+    margin: 15px
+}
+
+.userCard_container {
+    margin: auto;
+}
+
+.userCard_item {
+    margin-bottom: 10px;
+}
