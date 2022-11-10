@@ -9,7 +9,7 @@ const AutocompleteComp = (props) => {
     const completeUser = (value) => {
         if(value) {
             props.setPerson(value)
-            navigate('/page')
+            navigate(`/${value}`)
         }
     }
     const takePerson = (value) => props.setData(value)

@@ -7,7 +7,7 @@ import style from '../Style/Page.module.css'
 
 
 const Page = (props) => {
-    const {person, goToRepos, goToProfile} = props
+    const {person, goToRepos} = props
     const [fetchRep, setFetchRep] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
@@ -38,7 +38,7 @@ const Page = (props) => {
                 <div>
                     <hr className={style.dividing_line}/>
                     <div className={style.button_wrapper}>
-                        <Button variant="outlined" onClick={() => navigate('/repository')}>Показать все репозитории</Button>
+                        <Button variant="outlined" onClick={() => navigate(`/${person}/repository`)}>Показать все репозитории</Button>
                     </div>
                 </div>
             ) : (<div></div>)}

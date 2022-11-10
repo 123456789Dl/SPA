@@ -5,6 +5,7 @@ import Repos from "./Pages/Repos";
 import Page from "./Pages/Page";
 import Navigationbar from "./Components/Navigationbar";
 import HomePage from "./Pages/HomePage";
+import Home from "./Pages/Home";
 
 const App = () => {
     const [person, setPerson] = useState(null)
@@ -16,9 +17,11 @@ const App = () => {
             </div>
             <div>
                 <Routes>
-                    <Route path="/repository" element={<Repos {...{person}}/>}/>
-                    <Route path="/page" element={<Page {...{person}}/>}/>
-                    <Route path="/" element={<HomePage/>}/>
+                    {/*<Route path="/repository" element={<Repos {...{person}}/>}/>*/}
+                    {/*<Route path="/page" element={<Page {...{person}}/>}/>*/}
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/:username" element={<HomePage/>}/>
+                    <Route path="/:username/:repository" element={<Repos {...{person}}/>}/>
                 </Routes>
             </div>
         </div>

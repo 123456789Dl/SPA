@@ -11,11 +11,11 @@ export default function ReposCard(props) {
     return (
         <Grid xs={size} mb='20px'>
             <Paper className={style.paper_wrap}
-                sx={{
-                    p: 2,
-                    backgroundColor: (theme) =>
-                        theme.palette.mode === 'dark' ? '#1A2027' : '#FFFFE0',
-                }}
+                   sx={{
+                       p: 2,
+                       backgroundColor: (theme) =>
+                           theme.palette.mode === 'dark' ? '#1A2027' : '#FFFFE0',
+                   }}
             >
                 <Grid item>
                     <Typography gutterBottom variant="subtitle1" component="div">
