@@ -17,8 +17,6 @@ const App = () => {
             </div>
             <div>
                 <Routes>
-                    {/*<Route path="/repository" element={<Repos {...{person}}/>}/>*/}
-                    {/*<Route path="/page" element={<Page {...{person}}/>}/>*/}
                     <Route path="/" element={<Home/>}/>
                     <Route path="/:username" element={<HomePage/>}/>
                     <Route path="/:username/:repository" element={<Repos {...{person}}/>}/>

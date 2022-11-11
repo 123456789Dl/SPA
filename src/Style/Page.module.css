@@ -10,15 +10,15 @@
 .button_wrapper {
     display: flex;
     justify-content: center;
-    margin-left: 700px
+    margin-left: 40%;
+
 }
 
 .few_reposCards_wrapper {
-    justify-content: center;
-    display: flex
+    margin: auto;
+    max-width: 70%;
 }
 
 .reposCards_container {
-    margin: 50px;
-    width: 50%;
+    margin: 50px 0 50px 0;
 }

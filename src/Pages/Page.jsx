@@ -44,7 +44,7 @@ const Page = (props) => {
             ) : (<div></div>)}
 
             {(isLoading) ? (
-                <div className={style.few_reposCards_wrapper}>
+                <Grid className={style.few_reposCards_wrapper}>
                     <Grid container className={style.reposCards_container}>
                         {props.person && temp.map((val) => <ReposCard
                             key={val.id}
@@ -55,7 +55,7 @@ const Page = (props) => {
                             description={val.description}
                         />)}
                     </Grid>
-                </div>
+                </Grid>
             ) : (
                 <Grid>
                     <Grid>
