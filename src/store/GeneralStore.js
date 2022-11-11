@@ -3,7 +3,7 @@ import ReposCard from "../Components/ReposCard";
 import React from "react";
 
 
-class RepositoryStore {
+class GeneralStore {
     constructor() {
         makeAutoObservable(this)
     }
@@ -42,4 +42,4 @@ class RepositoryStore {
     }
 }
 
-export default new RepositoryStore()
+export default new GeneralStore()

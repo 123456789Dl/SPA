@@ -4,7 +4,7 @@ import style from '../Style/Repos.module.css'
 import ReposCard from "../Components/ReposCard";
 import {useParams} from "react-router-dom";
 import {observer} from "mobx-react-lite";
-import RepositoryStore from '../store/RepositoryStore'
+import GeneralStore from '../store/GeneralStore'
 
 const Repos = observer((props) => {
     const {username, repository} = useParams()
@@ -13,13 +13,13 @@ const Repos = observer((props) => {
 
     useEffect(() => {
         if (props.person || username) {
-            RepositoryStore.getReposData(setReposData, setIsLoading, username)
+            GeneralStore.getReposData(setReposData, setIsLoading, username)
         }
     }, [])
 
-    const filterHolder = RepositoryStore.filterRepos(reposData, repository);
+    const filterHolder = useMemo(() => GeneralStore.filterRepos(reposData, repository))
 
-    const collectionRepos = useMemo(() => RepositoryStore.mapRepositories(reposData, filterHolder))
+    const collectionRepos = useMemo(() => GeneralStore.mapRepositories(reposData, filterHolder))
 
     return (
         <div>

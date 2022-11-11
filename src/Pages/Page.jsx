@@ -1,29 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import User from "../Components/User";
 import ReposCard from "../Components/ReposCard";
 import {Button, Grid, Skeleton} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import style from '../Style/Page.module.css'
+import { observer } from "mobx-react-lite";
+import GeneralStore from '../store/GeneralStore'
 
 
-const Page = (props) => {
+const Page = observer((props) => {
     const {person, goToRepos} = props
     const [fetchRep, setFetchRep] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
-    let temp = null
-    const getUserData = async () => {
-        await fetch(`https://api.github.com/users/${person}/repos`)
-            .then((response) => response.json())
-            .then((response) => setFetchRep(response))
-        setIsLoading(true)
-    }
+
     useEffect(() => {
         if (person) {
-            getUserData()
+            GeneralStore.getReposData(setFetchRep,setIsLoading,person)
         }
     }, [person])
-    temp = fetchRep.filter((val, index) => index < 4)
+    const temp = useMemo(() => fetchRep.filter((val, index) => index < 4))
 
     return (
         <div>
@@ -70,6 +66,6 @@ const Page = (props) => {
         </div>
 
     );
-};
+});
 
 export default Page;
