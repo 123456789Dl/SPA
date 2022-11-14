@@ -10,16 +10,16 @@ import GeneralStore from '../store/GeneralStore'
 
 const Page = observer((props) => {
     const {person, goToRepos} = props
-    const [fetchRep, setFetchRep] = useState([])
+    // const [fetchRep, setFetchRep] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
         if (person) {
-            GeneralStore.getReposData(setFetchRep,setIsLoading,person)
+            GeneralStore.getReposData(setIsLoading,person)
         }
     }, [person])
-    const temp = useMemo(() => fetchRep.filter((val, index) => index < 4))
+    const temp = useMemo(() => GeneralStore.repositoryDate.filter((val, index) => index < 4))
 
     return (
         <div>

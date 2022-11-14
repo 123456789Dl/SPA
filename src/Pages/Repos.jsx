@@ -8,27 +8,48 @@ import GeneralStore from '../store/GeneralStore'
 
 const Repos = observer((props) => {
     const {username, repository} = useParams()
-    const [reposData, setReposData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         if (props.person || username) {
-            GeneralStore.getReposData(setReposData, setIsLoading, username)
+            GeneralStore.getReposData( setIsLoading, username)
         }
     }, [])
 
-    const filterHolder = useMemo(() => GeneralStore.filterRepos(reposData, repository))
+    const mapRepositories = (filterHolder) => {
+        if (GeneralStore.repositoryDate && GeneralStore.repositoryDate.length > 0 && filterHolder.length > 0) {
+            return filterHolder.map((el) => <ReposCard
+                id={el.id}
+                name={el.name}
+                watchers={el.watchers_count}
+                stars={el.stargazers_count}
+                description={el.description}
+            />)
+        } else if (GeneralStore.repositoryDate && GeneralStore.repositoryDate.length > 0) {
+            return GeneralStore.repositoryDate.map((el) => <ReposCard
+                id={el.id}
+                name={el.name}
+                watchers={el.watchers_count}
+                stars={el.stargazers_count}
+                description={el.description}
+            />)
+        } else return []
+    }
 
-    const collectionRepos = useMemo(() => GeneralStore.mapRepositories(reposData, filterHolder))
+    const filterHolder = useMemo(() => GeneralStore.filterRepos(repository))
+
+    const collectionRepos = useMemo(() => mapRepositories(filterHolder))
 
     return (
         <div>
-            <p className={style.header_p}>Количество репозиториев: {reposData && reposData.length}</p>
+            <p className={style.header_p}>
+                Количество репозиториев: {GeneralStore.repositoryDate  && GeneralStore.repositoryDate .length}
+            </p>
             <hr className={style.header_divide_line}/>
             <Grid container>
-                {(isLoading && reposData.length) ?
+                {(isLoading && GeneralStore.repositoryDate.length) ?
                     collectionRepos
-                    : (reposData && (reposData.length !== 0)) ? (<Skeleton
+                    : (GeneralStore.repositoryDate && (GeneralStore.repositoryDate.length !== 0)) ? (<Skeleton
                         variant="rounded"
                         width='80%'
                         height={300}
