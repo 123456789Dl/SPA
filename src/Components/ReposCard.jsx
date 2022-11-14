@@ -6,8 +6,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import style from '../Style/ReposCard.module.css'
 
-export default function ReposCard(props) {
-    const {size = 4, watchers, name, stars, description} = props
+export default function ReposCard({size = 4, watchers, name, stars, description}) {
+
     return (
         <Grid xs={size} mb='20px'>
             <Paper className={style.paper_wrap}

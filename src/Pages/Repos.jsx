@@ -6,12 +6,12 @@ import {useParams} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 import GeneralStore from '../store/GeneralStore'
 
-const Repos = observer((props) => {
+const Repos = observer(({person}) => {
     const {username, repository} = useParams()
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        if (props.person || username) {
+        if (person || username) {
             GeneralStore.getReposData( setIsLoading, username)
         }
     }, [])

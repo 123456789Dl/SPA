@@ -2,21 +2,21 @@ import React, {useEffect, useMemo, useState} from 'react';
 import User from "../Components/User";
 import ReposCard from "../Components/ReposCard";
 import {Button, Grid, Skeleton} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import style from '../Style/Page.module.css'
 import { observer } from "mobx-react-lite";
 import GeneralStore from '../store/GeneralStore'
+import UserCard from "../Components/UserCard";
 
 
-const Page = observer((props) => {
-    const {person, goToRepos} = props
-    // const [fetchRep, setFetchRep] = useState([])
+const Page = observer(({person}) => {
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
+    const {usersDate} = GeneralStore
 
     useEffect(() => {
         if (person) {
-            GeneralStore.getReposData(setIsLoading,person)
+            Promise.all([GeneralStore.getReposData(setIsLoading,person), GeneralStore.getUsersData(person)])
         }
     }, [person])
     const temp = useMemo(() => GeneralStore.repositoryDate.filter((val, index) => index < 4))
@@ -25,12 +25,22 @@ const Page = observer((props) => {
         <div>
             {(isLoading) ? (
                 <div>
-                    {props.person && <User {...{person, goToRepos}}/>}
+                    {/*{person && <User {...{person, goToRepos}}/>}*/}
+                    {person && <UserCard
+                        img={usersDate.avatar_url}
+                        login={usersDate.name}
+                        id={usersDate.id}
+                        blog={usersDate.blog}
+                        created={usersDate.created_at}
+                        followers={usersDate.followers}
+                        following={usersDate.following}
+                        goToRepos={usersDate.goToRepos}
+                    />}
                 </div>
             ) : (
                 <Skeleton variant="rounded" width='50%' height={100} className={style.skel_item}/>
             )}
-            {(props.person) ? (
+            {(person) ? (
                 <div>
                     <hr className={style.dividing_line}/>
                     <div className={style.button_wrapper}>
@@ -42,7 +52,7 @@ const Page = observer((props) => {
             {(isLoading) ? (
                 <Grid className={style.few_reposCards_wrapper}>
                     <Grid container className={style.reposCards_container}>
-                        {props.person && temp.map((val) => <ReposCard
+                        {person && temp.map((val) => <ReposCard
                             key={val.id}
                             size={6}
                             watchers={val.watchers}

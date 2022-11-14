@@ -4,7 +4,7 @@ import {useLocation, useParams} from "react-router-dom";
 import Page from "./Page";
 
 
-const HomePage = (props) => {
+const HomePage = () => {
     const {username} = useParams()
     const location = useLocation()
     console.log(location)

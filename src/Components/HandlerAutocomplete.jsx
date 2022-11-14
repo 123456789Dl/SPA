@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import AutocompleteComp from "./AutocompleteComp";
 
-const HandlerAutocomplete = (props) => {
+const HandlerAutocomplete = ({setPerson}) => {
     const [textData, setData] = useState('')
     const [users, setUsers] = useState([])
 
@@ -28,7 +28,7 @@ const HandlerAutocomplete = (props) => {
             <AutocompleteComp
                 timeless={timeless}
                 setData={setData}
-                setPerson={props.setPerson}/>
+                setPerson={setPerson}/>
         </div>
     );
 };

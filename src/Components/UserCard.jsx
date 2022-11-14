@@ -13,20 +13,20 @@ const Img = styled('img')({
     maxHeight: '100%',
 });
 
-export default function UserCard(props) {
+export default function UserCard({img, login, blog, followers, following, created}) {
     const dayjs = require('dayjs')
     return (
         <Paper className={style.paper_wrap}
-            sx={{
-                p: 2,
-                backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#FFFFE0',
-            }}
+               sx={{
+                   p: 2,
+                   backgroundColor: (theme) =>
+                       theme.palette.mode === 'dark' ? '#1A2027' : '#FFFFE0',
+               }}
         >
             <Grid container spacing={2}>
                 <Grid item>
                     <Typography className={style.img_wrap}>
-                        <Img alt="complex" src={props.img}/>
+                        <Img alt="complex" src={img}/>
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm container className={style.userCard_container}>
@@ -34,29 +34,29 @@ export default function UserCard(props) {
                         <Grid item>
                             <Grid className={style.userCard_item}>
                                 <Typography gutterBottom variant="subtitle1" component="div">
-                                    {props.login}
+                                    {login}
                                 </Typography>
                             </Grid>
                             <Grid className={style.grid_item}>
                                 <Typography variant="body2" gutterBottom>
-                                    Blog: {props.blog}
+                                    Blog: {blog}
                                 </Typography>
                             </Grid>
                             <Grid className={style.grid_item}>
                                 <Typography variant="body2">
-                                    Followers: {props.followers}
+                                    Followers: {followers}
                                 </Typography>
                             </Grid>
                             <Grid className={style.grid_item}>
                                 <Typography variant="body2">
-                                    Following: {props.following}
+                                    Following: {following}
                                 </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item>
                         <Typography variant="subtitle1" component="div">
-                            {props.created && dayjs(props.created).format('YYYY-MM-DD')}
+                            {created && dayjs(created).format('YYYY-MM-DD')}
                         </Typography>
                     </Grid>
                 </Grid>

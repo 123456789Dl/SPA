@@ -7,6 +7,8 @@ class GeneralStore {
 
     ]
     usersDate = {}
+
+
     constructor() {
         makeAutoObservable(this)
     }
@@ -18,9 +20,9 @@ class GeneralStore {
         setIsLoading(true)
     }
 
-    getUsersData = async (person) => {
-        if (person) {
-            fetch(`https://api.github.com/users/${person}`)
+    getUsersData = async (username) => {
+        if (username) {
+            fetch(`https://api.github.com/users/${username}`)
                 .then((response) => response.json())
                 .then((response) => this.usersDate = ({...response}))
         }

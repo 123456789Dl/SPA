@@ -2,31 +2,32 @@ import React, {useEffect, useState} from 'react';
 import style from '../Style/User.module.css'
 import UserCard from "./UserCard";
 import GeneralStore from '../store/GeneralStore'
+import {observer} from "mobx-react-lite";
 
-const User = (props) => {
-    // const [userConf, setUserConf] = useState([])
-
+const User = observer (({person}) => {
+    const {usersDate} = GeneralStore
     useEffect(() => {
-        if (props.person) {
-            GeneralStore.getUsersData(props.person)
+        if (person) {
+            GeneralStore.getUsersData(person)
         }
-    }, [props.person])
+    }, [person])
+
     return (
         <div>
             <div className={style.wrapper}>
                 <UserCard
-                    img={GeneralStore.usersDate.avatar_url}
-                    login={GeneralStore.usersDate.name}
-                    id={GeneralStore.usersDate.id}
-                    blog={GeneralStore.usersDate.blog}
-                    created={GeneralStore.usersDate.created_at}
-                    followers={GeneralStore.usersDate.followers}
-                    following={GeneralStore.usersDate.following}
-                    goToRepos={GeneralStore.usersDate.goToRepos}
+                    img={usersDate.avatar_url}
+                    login={usersDate.name}
+                    id={usersDate.id}
+                    blog={usersDate.blog}
+                    created={usersDate.created_at}
+                    followers={usersDate.followers}
+                    following={usersDate.following}
+                    goToRepos={usersDate.goToRepos}
                 />
             </div>
         </div>
     );
-};
+});
 
 export default User;
