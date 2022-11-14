@@ -6,7 +6,7 @@ class GeneralStore {
     repositoryDate = [
 
     ]
-    usersDate
+    usersDate = {}
     constructor() {
         makeAutoObservable(this)
     }
